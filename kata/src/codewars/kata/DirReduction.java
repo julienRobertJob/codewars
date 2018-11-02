@@ -4,16 +4,16 @@ import java.util.*;
 
 public class DirReduction {
     public static String[] dirReduc(String[] arr) {
-        LinkedList<String> result = new LinkedList<String>();
+        Stack<String> result = new Stack<String>();
         for (int i=0;i<arr.length;i++){
             if (!result.isEmpty()
-                && ((result.getLast().equals("NORTH") && arr[i].equals("SOUTH"))
-                    ||(result.getLast().equals("SOUTH") && arr[i].equals("NORTH"))
-                    ||(result.getLast().equals("EAST") && arr[i].equals("WEST"))
-                    ||(result.getLast().equals("WEST") && arr[i].equals("EAST")))){
-                result.removeLast();
+                && ((result.peek().equals("NORTH") && arr[i].equals("SOUTH"))
+                    ||(result.peek().equals("SOUTH") && arr[i].equals("NORTH"))
+                    ||(result.peek().equals("EAST") && arr[i].equals("WEST"))
+                    ||(result.peek().equals("WEST") && arr[i].equals("EAST")))){
+                result.pop();
             }else{
-                result.addLast(arr[i]);
+                result.push(arr[i]);
             }
         }
         return result.toArray(new String[result.size()]);
